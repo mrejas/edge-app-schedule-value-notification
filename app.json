@@ -1,0 +1,128 @@
+{
+  "author": "IoT Open",
+  "licence": "MIT",
+  "input": {
+	  "trigger_functions": {
+		  "required": true,
+		  "name": "Trigger functions",
+		  "description": "These functions will be checked for value",
+		  "type": "multi_function_selector"
+	  },
+	  "overOrUnder": {
+		  "required": true,
+		  "name": "Over/Under",
+		  "description": "Send alarm over or under the specified value",
+		  "type": "toggle",
+		  "true_value": "over",
+		  "false_value": "under"
+	  },
+	  "threshold": {
+		  "name": "Threshold",
+		  "type": "number",
+		  "required": true
+	  },
+	  "time_start": {
+		  "name": "Time period start (hour, inclusive). E.g. 8",
+		  "description": "Enter the hour the period start.",
+		  "type": "number",
+		  "required": true
+	  },
+	  "time_end": {
+		  "name": "Time period end (hour, exclusive). E.g. 17",
+		  "description": "Enter the hour the period end.",
+		  "type": "number",
+		  "required": true
+	  },
+	  "monday": {
+		  "required": true,
+		  "name": "Monday",
+		  "type": "toggle",
+		  "true_value": true,
+		  "false_value": false
+	  },
+	  "tuesday": {
+		  "required": true,
+		  "name": "Tuesday",
+		  "type": "toggle",
+		  "true_value": true,
+		  "false_value": false
+	  },
+	  "wednesday": {
+		  "required": true,
+		  "name": "Wednesday",
+		  "type": "toggle",
+		  "true_value": true,
+		  "false_value": false
+	  },
+	  "thursday": {
+		  "required": true,
+		  "name": "Thursday",
+		  "type": "toggle",
+		  "true_value": true,
+		  "false_value": false
+	  },
+	  "friday": {
+		  "required": true,
+		  "name": "Friday",
+		  "type": "toggle",
+		  "true_value": true,
+		  "false_value": false
+	  },
+	  "saturday": {
+		  "required": true,
+		  "name": "Saturday",
+		  "type": "toggle",
+		  "true_value": true,
+		  "false_value": false
+	  },
+	  "sunday": {
+		  "required": true,
+		  "name": "Sunday",
+		  "type": "toggle",
+		  "true_value": true,
+		  "false_value": false
+	  },
+	  "side": {
+		  "required": true,
+		  "name": "Trigger inside or outside period",
+		  "type": "toggle",
+		  "true_value": "in",
+		  "false_value": "out"
+	  },
+	  "notification_output": {
+		  "name": "Select notification",
+		  "description": "Select the notification output to send notifications with.",
+		  "type": "single_notification_output_selector"
+	  }
+  },
+  "guide": [
+    {
+      "id": "stage_1",
+      "title": "Parameter selection",
+      "description": "Set the parameters you want to use.",
+      "input_fields": [
+		  "trigger_functions",
+		  "overOrUnder",
+		  "threshold",
+		  "notification_output"
+      ]
+    },
+    {
+      "id": "stage_2",
+      "title": "When to trigger the alarm",
+      "description": "Choose on what times the alarm should be triggered.",
+      "input_fields": [
+		  "time_start",
+		  "time_end",
+		  "monday",
+		  "tuesday",
+		  "wednesday",
+		  "thursday",
+		  "friday",
+		  "saturday",
+		  "sunday",
+		  "side"
+      ]
+    }
+  ]
+}
