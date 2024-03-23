@@ -100,7 +100,7 @@ function dst_date()
 			end
 		end
 	end
-	if time['month'] == 19 then
+	if time['month'] == 10 then
 		if time['day'] < 25 then
 			offset = 2
 		else
@@ -133,6 +133,20 @@ function dst_date()
 	return(os.date('!*t', os.time() + offset * 3600))
 end
 
+
+function findDevice(criteria)
+    devices = lynx.getDevices()
+    if math.type(criteria) ~= nil then
+        for _, dev in ipairs(devices) do
+            if dev.id == criteria then return dev end
+        end
+    elseif type(criteria) == 'table' then
+        for _, dev in ipairs(devices) do
+            if matchCriteria(dev, criteria) then return dev end
+        end
+    end
+    return nil
+end
 
 
 function findFunction(criteria)
@@ -205,6 +219,7 @@ function sendNotificationIfArmed(topic, value, action)
 	print('In schedule')
 
 	local func = topicFunction[topic]
+    	local dev = findDevice(tonumber(func.meta.device_id))
 	local armed = topicArmed[topic]
 	local sent = edgeTrigger[topic]
 	if armed then
@@ -216,6 +231,7 @@ function sendNotificationIfArmed(topic, value, action)
 			unit = func.meta.unit,
 			note = func.meta.note,
 			func = func,
+			device = dev,
 			threshold = cfg.threshold
 		}
 		lynx.notify(cfg.notification_output, payloadData)
